@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/rikkimongoose/icd-data.git"
   },
+  "dependencies" : {
+  	"import-lazy": "latest"
+  },
   "keywords": [
     "icd",
     "healthcare"
