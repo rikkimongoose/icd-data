@@ -9,7 +9,7 @@ with open("icb10.txt", 'r', encoding="utf-8") as f:
         elem_key = row_elems[0].strip()
         elem_data = row_elems[1].strip()
         elem_parent_key = row_elems[2].strip()
-
+        if not elem_data: continue
         item = { "name": elem_data, "value": elem_key, "parent": elem_parent_key, "children": [] }
         data_list[elem_key] = item
 
