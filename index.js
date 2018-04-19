@@ -9,7 +9,7 @@ function isCode(code) {
 function findInTree(tree, searchCode, searchText){
     let i = element.children.length;
     while (i--){
-        if (element.value == searchCode
+        if (element.value.includes(searchCode)
          || element.name.includes(searchText)){
             return element;
         }
@@ -24,7 +24,7 @@ function findInTree(tree, searchCode, searchText){
 function filterInTree(tree, searchCode, searchText, results){
     let i = element.children.length;
     while (i--){        
-        if (element.value == searchCode
+        if (element.value.includes(searchCode)
          || element.name.includes(searchText)){
             results.push(element);
         }
