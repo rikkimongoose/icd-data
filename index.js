@@ -1,16 +1,16 @@
 'use strict'
 
-import {ICD_JSON, ICD_CODES} from 'data/icd-data';
+import ICD_DATA from 'data/icd-data';
 
 function isCode(code) {
-    return ICD_CODES.find(re => re.exec(code)) !== undefined;
+    return ICD_DATA.CODES.find(re => re.exec(code)) !== undefined;
 }
 
 function findInTree(tree, searchCode, searchText){
     let i = element.children.length;
     while (i--){
-        if (element.name.includes(searchText)
-         || element.value == searchCode){
+        if (element.value == searchCode
+         || element.name.includes(searchText)){
             return element;
         }
         let children = element.children;
@@ -24,8 +24,8 @@ function findInTree(tree, searchCode, searchText){
 function filterInTree(tree, searchCode, searchText, results){
     let i = element.children.length;
     while (i--){        
-        if (element.name.includes(searchText)
-         || element.value == searchCode){
+        if (element.value == searchCode
+         || element.name.includes(searchText)){
             results.push(element);
         }
         let children = element.children;
@@ -40,7 +40,7 @@ export default Icd {
         let options = options || {};
         let searchCode = options.code || options.text || "";
         let searchText = options.text || "";
-        let dataSource = ICD_DATA[icdVersion][locale];
+        let dataSource = ICD_DATA.JSON;
         let result = findInTree(dataSource, searchCode.replace("X", ""), searchText);
         func && func(result)
         return result;
@@ -50,7 +50,7 @@ export default Icd {
         let options = options || {};
         let searchCode = options.code || options.text || "";
         let searchText = options.text || "";
-        let dataSource = ICD_JSON;
+        let dataSource = ICD_DATA.JSON;
 
         var results = [];
         filterInTree(dataSource, searchCode.replace("X", ""), searchText, results);
