@@ -1,0 +1,30 @@
+{
+  "name": "icd-data",
+  "version": "0.1.0",
+  "description": "ICD 10+ data for modern JS apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rikkimongoose/icd-data.git"
+  },
+  "keywords": [
+    "icd",
+    "healthcare"
+  ],
+  "author": "“Alexander <“alexander.a.teut@gmail.com”> (http://rikkimongoose.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rikkimongoose/icd-data/issues"
+  },
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "homepage": "https://github.com/rikkimongoose/icd-data#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1"
+  }
+}
