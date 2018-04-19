@@ -1,6 +1,6 @@
 'use strict'
 
-import ICD_JSON from 'data/icd10-ru';
+import ICD_JSON from 'data/icd-data';
 const ICD_VERSION = '10';
 
 const ICD_CODES = {
