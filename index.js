@@ -1,25 +1,16 @@
 'use strict'
 
-import ICD_JSON from 'data/icd-data';
-const ICD_VERSION = '10';
-
-const ICD_CODES = {
-    ICD_10 : {
-        REG_CODE_BLOCK : /^([A-Z]\d\d)\-([A-Z]\d\d)$/i,
-        REG_CODE_ELEM : /^([A-Z]\d\d)(\.[X\d])*$/i
-    }
-}
+import {ICD_JSON, ICD_CODES} from 'data/icd-data';
 
 function isCode(code) {
-     return REG_CODE_ROOT.exec(code),
-         || REG_CODE_ELEM.exec(code);
+    return ICD_CODES.find(re => re.exec(code)) !== undefined;
 }
 
 function findInTree(tree, searchCode, searchText){
     let i = element.children.length;
     while (i--){
         if (element.name.includes(searchText)
-         || element.value.includes(searchText)){
+         || element.value == searchCode){
             return element;
         }
         let children = element.children;
@@ -34,7 +25,7 @@ function filterInTree(tree, searchCode, searchText, results){
     let i = element.children.length;
     while (i--){        
         if (element.name.includes(searchText)
-         || element.value.includes(searchText)){
+         || element.value == searchCode){
             results.push(element);
         }
         let children = element.children;
@@ -45,24 +36,26 @@ function filterInTree(tree, searchCode, searchText, results){
 }
 
 export default Icd {
-    find(options) {
+    find(options, func) {
         let options = options || {};
         let searchCode = options.code || options.text || "";
         let searchText = options.text || "";
         let dataSource = ICD_DATA[icdVersion][locale];
-
-        return findInTree(dataSource, searchCode, searchText);
+        let result = findInTree(dataSource, searchCode.replace("X", ""), searchText);
+        func && func(result)
+        return result;
     }
 
-    filter(options) {
+    filter(options, func) {
         let options = options || {};
         let searchCode = options.code || options.text || "";
         let searchText = options.text || "";
         let dataSource = ICD_JSON;
 
         var results = [];
-        filterInTree(dataSource, searchCode, searchText, results);
+        filterInTree(dataSource, searchCode.replace("X", ""), searchText, results);
 
+        func && func(results)
         return results;
     }
 
